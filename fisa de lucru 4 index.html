@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MoneyQuest este o aplicație educațională despre economisire și gestionarea banilor, creată pentru elevii de gimnaziu.">
+  <title>MoneyQuest | Învață să-ți gestionezi banii</title>
+  <!-- Fișa 4: HTML + CSS, cu funcționalitatea din script.js -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- MENIU: navigare către secțiunile paginii -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#acasa" aria-label="MoneyQuest, înapoi la Acasă">
+        <span class="brand-icon" aria-hidden="true">M</span>
+        <span>Money<span class="brand-accent">Quest</span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Meniu principal">
+        <a class="active" href="#acasa">Acasă</a>
+        <a href="#lectii">Lecții</a>
+        <a href="#jocuri">Jocuri</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#progres">Progres</a>
+      </nav>
+
+      <div class="score-pill" aria-label="Scorul acumulat în quiz">
+        <span aria-hidden="true">⭐</span>
+        <span>Scor: <strong id="scor">0 XP</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <main id="acasa">
+    <!-- ECRANUL DE START: titlu, mesaj, mascotă, scor și buton START JOC -->
+    <section class="hero container" aria-labelledby="titlu-principal">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> O AVENTURĂ DESPRE BANI, PENTRU 11–15 ANI</div>
+        <h1 id="titlu-principal">Învață să fii <span>smart cu banii!</span></h1>
+        <p class="hero-description">
+          Bun venit în <strong>MoneyQuest</strong>! Învață să economisești, să-ți organizezi
+          banii de buzunar și să iei decizii istețe prin jocuri și provocări distractive.
+        </p>
+        <div class="hero-actions">
+          <button class="button button-primary" id="start" type="button">START JOC <span aria-hidden="true">→</span></button>
+          <a class="button button-secondary" href="#cum-functioneaza">Cum funcționează?</a>
+        </div>
+        <div class="hero-highlights" aria-label="Avantajele aplicației">
+          <span>✓ Fără cont</span>
+          <span>✓ Bani virtuali</span>
+          <span>✓ Înveți jucându-te</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Mascota MoneyQuest și informații despre provocarea de început">
+        <div class="floating-label floating-label-top">✨ Învață. Joacă. Economisește.</div>
+        <div class="quest-card">
+          <div class="quest-card-top">
+            <span class="level-tag" id="nivel-actual">NIVEL 1 • ÎNCEPĂTOR</span>
+            <span class="card-stars" aria-hidden="true">✦ ✦</span>
+          </div>
+          <div class="mascot-area">
+            <span class="decoration decoration-left" aria-hidden="true">✧</span>
+            <span class="mascot" id="mascota" role="img" aria-label="Mascotă: un săculeț cu bani">💰</span>
+            <span class="decoration decoration-right" aria-hidden="true">✦</span>
+            <span class="mascot-shadow" aria-hidden="true"></span>
+          </div>
+          <div class="quest-card-bottom">
+            <p class="mini-label">PRIMA TA MISIUNE</p>
+            <h2>Nevoie sau dorință?</h2>
+            <p>Descoperă cum să alegi ce merită cumpărat mai întâi.</p>
+            <div class="progress-label"><span>Progresul în quiz</span><strong id="progres-procent">0%</strong></div>
+            <div class="progress-track" id="bara-progres" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progres în quiz"><span id="bara-progres-umplere"></span></div>
+          </div>
+        </div>
+        <div class="floating-label floating-label-bottom">🪙 +10 XP / răspuns corect</div>
+      </div>
+    </section>
+
+    <!-- CE OFERĂ APLICAȚIA: rezumatul activităților planificate -->
+    <section class="how-section" id="cum-functioneaza" aria-labelledby="cum-functioneaza-titlu">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-overline">UN PAS PE RÂND</span>
+          <h2 id="cum-functioneaza-titlu">Cum funcționează MoneyQuest?</h2>
+          <p>Înveți o idee nouă, o exersezi și vezi cât ai progresat.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step"><div class="step-icon step-icon-teal">📘</div><h3>1. Învață</h3><p>Citește explicații scurte cu exemple din viața reală.</p></article>
+          <article class="step"><div class="step-icon step-icon-gold">🎮</div><h3>2. Joacă</h3><p>Rezolvă provocări și testează-ți alegerile.</p></article>
+          <article class="step"><div class="step-icon step-icon-purple">🏆</div><h3>3. Progresează</h3><p>Adună puncte XP și deblochează insigne.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDURI: schița structurii pentru lecții, jocuri și simulator -->
+    <section class="activities-section container" id="jocuri" aria-labelledby="activitati-titlu">
+      <div class="section-heading left-heading">
+        <span class="section-overline">ALEGE-ȚI AVENTURA</span>
+        <h2 id="activitati-titlu">Activități MoneyQuest</h2>
+        <p>Începe cu un quiz de 5 întrebări despre buget, economisire și cumpărături responsabile.</p>
+      </div>
+      <!-- FIȘA 4: prima funcționalitate JavaScript — quiz cu 5 întrebări -->
+      <section class="quiz-panel" id="quiz" aria-labelledby="quiz-titlu" hidden>
+        <div class="quiz-topline">
+          <span class="quiz-label">🎯 PROVOCAREA MONEYQUEST</span>
+          <span id="quiz-stare" class="quiz-count">Întrebarea 1 din 5</span>
+        </div>
+        <h3 id="quiz-titlu">Testează-ți alegerile!</h3>
+        <p class="quiz-intro">Alege una dintre cele trei variante. Primești 10 XP pentru un răspuns corect.</p>
+        <p id="intrebare" class="quiz-question"></p>
+        <div id="raspunsuri" class="quiz-answers" aria-label="Variante de răspuns"></div>
+        <p id="mesaj" class="quiz-feedback" role="status" aria-live="polite"></p>
+        <button id="urmatoarea" class="button button-primary quiz-next" type="button" hidden>Următoarea întrebare →</button>
+        <div id="rezultat-final" class="quiz-result" hidden>
+          <h4>🏆 Provocare terminată!</h4>
+          <p id="rezultat-text"></p>
+          <button id="restart" class="button button-primary" type="button">Joacă din nou ↻</button>
+        </div>
+      </section>
+      <div class="activities-grid">
+        <article class="activity-card" id="lectii">
+          <div class="activity-icon activity-icon-blue" aria-hidden="true">📚</div>
+          <span class="activity-category">LECȚII</span>
+          <h3>Primii pași în finanțe</h3>
+          <p>Află ce înseamnă un buget, o economie, o nevoie și o dorință.</p>
+          <span class="activity-status">4 lecții planificate <span aria-hidden="true">↗</span></span>
+        </article>
+        <article class="activity-card">
+          <div class="activity-icon activity-icon-yellow" aria-hidden="true">🧩</div>
+          <span class="activity-category">JOC EDUCAȚIONAL</span>
+          <h3>Nevoie sau dorință?</h3>
+          <p>Alege corect categoria pentru cinci cheltuieli obișnuite.</p>
+          <span class="activity-status">Quiz disponibil • 5 întrebări <span aria-hidden="true">↗</span></span>
+        </article>
+        <article class="activity-card" id="simulator">
+          <div class="activity-icon activity-icon-green" aria-hidden="true">💵</div>
+          <span class="activity-category">SIMULATOR</span>
+          <h3>Bugetul de 100 lei</h3>
+          <p>Împarte bani virtuali între nevoi, dorințe și economii.</p>
+          <span class="activity-status">Fără bani reali <span aria-hidden="true">↗</span></span>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROGRES: afișare demonstrativă; datele se vor actualiza ulterior -->
+    <section class="container progress-section" id="progres" aria-labelledby="progres-titlu">
+      <div class="progress-banner">
+        <div class="progress-banner-symbol" aria-hidden="true">🏅</div>
+        <div>
+          <span class="section-overline">PROGRESUL TĂU</span>
+          <h2 id="progres-titlu">Fiecare alegere bună contează.</h2>
+          <p>Pornești de la <strong>0 XP</strong>, nivelul <strong>Începător</strong>. În această etapă, scorul quizului se actualizează imediat. Insignele vor fi adăugate ulterior.</p>
+        </div>
+        <div class="progress-banner-score"><span id="scor-progres">0</span> <small>XP</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span><strong>MoneyQuest</strong> · Proiect educațional, clasa a XI-a</span>
+      <span>Realizat de Tămaș Eugen · Etapa 4 — HTML + CSS + JavaScript</span>
+    </div>
+  </footer>
+  <!-- Fișierul JavaScript se încarcă la final, după elementele HTML. -->
+  <script src="script.js"></script>
+</body>
+</html>

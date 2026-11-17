@@ -1,0 +1,210 @@
+/* FIȘA DE LUCRU 4 – MONEYQUEST
+   Păstrăm stilurile din Fișa 3 și adăugăm stilizarea quizului.
+   Culori: principală #125C4E, accent #F7B84B, text #22303A.
+   Fonturi: Trebuchet MS (titluri), Verdana (text).
+*/
+
+:root {
+  --primary: #125c4e;
+  --primary-dark: #0a4439;
+  --accent: #f7b84b;
+  --text: #22303a;
+  --muted: #63747c;
+  --background: #f7faf8;
+  --white: #ffffff;
+  --border: #e3ece8;
+}
+
+/* 1. Stiluri generale */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--text); font-family: Verdana, Geneva, sans-serif; font-size: 14px; line-height: 1.65; }
+h1, h2, h3 { font-family: "Trebuchet MS", Arial, sans-serif; line-height: 1.16; margin-top: 0; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+[hidden] { display: none !important; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.container { width: min(1130px, calc(100% - 48px)); margin-inline: auto; }
+
+/* 2. Antetul și meniul */
+.site-header { background: var(--white); border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; justify-content: space-between; align-items: center; gap: 28px; min-height: 84px; }
+.brand { display: inline-flex; align-items: center; gap: 11px; font-family: "Trebuchet MS", Arial, sans-serif; font-weight: 900; font-size: 25px; color: var(--primary-dark); white-space: nowrap; }
+.brand-icon { display: grid; place-items: center; width: 43px; height: 43px; border-radius: 14px; color: var(--primary-dark); background: var(--accent); font-size: 25px; box-shadow: 0 4px 0 #f1cf8f; }
+.brand-accent { color: #d18c1f; }
+.main-nav { display: flex; align-items: center; gap: 25px; }
+.main-nav a { font-size: 12px; font-weight: 700; color: var(--muted); padding: 30px 0 26px; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; }
+.main-nav a:hover, .main-nav a.active { color: var(--primary); border-bottom-color: var(--accent); }
+.score-pill { display: inline-flex; align-items: center; gap: 9px; flex-shrink: 0; padding: 9px 14px; border-radius: 100px; background: #fff5dc; color: #71521d; font-size: 12px; }
+.score-pill strong { font-size: 14px; }
+
+/* 3. Ecranul principal */
+.hero { display: grid; grid-template-columns: 1.04fr .96fr; align-items: center; gap: 65px; padding-top: 72px; padding-bottom: 102px; }
+.eyebrow, .section-overline { color: var(--primary); font-weight: 800; letter-spacing: 1.3px; font-size: 10px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; background: #e6f2eb; padding: 10px 14px; border-radius: 30px; }
+.eyebrow-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #40a882; }
+h1 { max-width: 590px; margin: 23px 0 22px; font-size: clamp(42px, 5vw, 65px); letter-spacing: -2.2px; color: #172e32; }
+h1 span { color: var(--primary); }
+.hero-description { max-width: 540px; font-size: 15px; line-height: 1.9; color: #5c6b72; margin-bottom: 30px; }
+.hero-description strong { color: var(--primary-dark); }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.button { border: 0; min-height: 53px; display: inline-flex; align-items: center; justify-content: center; gap: 22px; padding: 14px 21px; font-family: "Trebuchet MS", Arial, sans-serif; font-weight: 800; font-size: 15px; border-radius: 12px; transition: transform .2s, box-shadow .2s, background .2s; }
+.button:hover { transform: translateY(-2px); }
+.button-primary { background: var(--accent); color: #3f321c; box-shadow: 0 5px 0 #e8a941; }
+.button-primary:hover { background: #ffd080; }
+.button-secondary { background: var(--white); border: 1px solid #dce7e2; color: var(--primary-dark); }
+.hero-highlights { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 30px; color: #637b73; font-size: 11px; font-weight: 700; }
+
+/* 4. Cardul cu mascota */
+.hero-visual { position: relative; display: flex; justify-content: center; padding: 14px 25px; }
+.hero-visual::before { content: ""; position: absolute; width: 94%; aspect-ratio: 1; border-radius: 50%; background: #e7f1e8; top: 6%; left: 3%; z-index: 0; }
+.quest-card { position: relative; z-index: 1; width: min(390px, 100%); padding: 18px; background: var(--white); border: 1px solid var(--border); border-radius: 24px; box-shadow: 0 24px 45px rgba(15, 65, 51, .11); transform: rotate(1.5deg); }
+.quest-card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.level-tag { background: #e6f3eb; color: var(--primary-dark); font-weight: 800; font-size: 10px; letter-spacing: .8px; border-radius: 20px; padding: 9px 12px; }
+.card-stars { color: #e5ac3f; letter-spacing: 5px; font-size: 18px; }
+.mascot-area { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 218px; margin-top: 5px; border-radius: 18px; background: radial-gradient(circle at center, #fff3d4 0, #fdf6e6 41%, #f7f9ed 72%); overflow: hidden; }
+.mascot { font-size: 112px; line-height: 1.4; z-index: 1; filter: drop-shadow(0 10px 5px rgba(89, 64, 24, .11)); }
+.mascot-shadow { position: absolute; bottom: 23px; width: 130px; height: 17px; background: rgba(81, 88, 59, .09); border-radius: 50%; }
+.decoration { position: absolute; font-size: 37px; color: #d9b04b; }
+.decoration-left { top: 34px; left: 45px; }
+.decoration-right { bottom: 42px; right: 40px; }
+.quest-card-bottom { padding: 14px 8px 4px; }
+.mini-label { color: #b07d20; font-size: 10px; letter-spacing: 1.3px; font-weight: 800; margin: 2px 0 5px; }
+.quest-card-bottom h2 { font-size: 25px; color: #203e39; margin: 0 0 7px; }
+.quest-card-bottom p:not(.mini-label) { color: #62716e; font-size: 12px; margin: 0 0 20px; }
+.progress-label { display: flex; justify-content: space-between; gap: 14px; font-size: 11px; color: #6d7b78; margin-bottom: 8px; }
+.progress-label strong { color: var(--primary); }
+.progress-track { height: 9px; border-radius: 20px; background: #e9f0eb; overflow: hidden; }
+.progress-track span { display: block; width: 0%; height: 100%; background: var(--primary); }
+.floating-label { position: absolute; z-index: 2; padding: 12px 16px; border: 1px solid #e9eee8; border-radius: 12px; background: white; color: var(--primary-dark); font-size: 11px; font-weight: 700; box-shadow: 0 12px 25px rgba(33, 73, 60, .09); white-space: nowrap; }
+.floating-label-top { top: 54px; right: 0; transform: rotate(5deg); }
+.floating-label-bottom { bottom: 48px; left: 0; transform: rotate(-4deg); }
+
+/* 5. Secțiunea „Cum funcționează” */
+.how-section { background: var(--white); padding: 72px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-heading { text-align: center; max-width: 730px; margin: 0 auto 32px; }
+.section-heading h2 { margin: 9px 0 10px; font-size: clamp(28px, 3vw, 35px); letter-spacing: -.7px; }
+.section-heading p { color: var(--muted); margin: 0; font-size: 13px; }
+.steps-grid, .activities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
+.step { padding: 26px 24px; background: var(--background); border-radius: 17px; border: 1px solid var(--border); }
+.step-icon { display: grid; place-items: center; width: 52px; height: 52px; font-size: 25px; border-radius: 15px; margin-bottom: 15px; }
+.step-icon-teal { background: #d9eee9; }
+.step-icon-gold { background: #fff0c8; }
+.step-icon-purple { background: #ede6ff; }
+.step h3 { font-size: 21px; margin: 0 0 7px; }
+.step p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+
+/* 6. Cardurile cu activități */
+.activities-section { padding-top: 76px; padding-bottom: 67px; }
+.left-heading { text-align: left; margin-left: 0; }
+.activity-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 25px; min-height: 280px; box-shadow: 0 6px 18px rgba(26, 73, 61, .03); }
+.activity-icon { display: grid; place-items: center; font-size: 29px; width: 64px; height: 64px; border-radius: 16px; margin-bottom: 20px; }
+.activity-icon-blue { background: #e5edff; }
+.activity-icon-yellow { background: #fff1c9; }
+.activity-icon-green { background: #def3e6; }
+.activity-category { display: block; color: #73817e; font-size: 9px; font-weight: 800; letter-spacing: 1.3px; margin-bottom: 7px; }
+.activity-card h3 { font-size: 22px; margin-bottom: 10px; }
+.activity-card p { font-size: 12px; color: var(--muted); min-height: 62px; line-height: 1.8; }
+.activity-status { display: flex; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--border); color: var(--primary); font-size: 11px; font-weight: 800; }
+.activity-status span { font-size: 16px; }
+
+/* 7. Progres și subsol */
+.progress-section { padding-bottom: 76px; }
+.progress-banner { display: flex; align-items: center; gap: 23px; padding: 29px 35px; border-radius: 19px; color: var(--white); background: linear-gradient(110deg, #125c4e, #0a473c); }
+.progress-banner-symbol { display: grid; place-items: center; width: 78px; height: 78px; border-radius: 19px; background: rgba(255, 255, 255, .13); font-size: 37px; flex-shrink: 0; }
+.progress-banner .section-overline { color: #baded0; }
+.progress-banner h2 { font-size: 26px; margin: 7px 0; }
+.progress-banner p { font-size: 12px; color: #d8eae3; margin: 0; }
+.progress-banner-score { margin-left: auto; white-space: nowrap; color: var(--accent); font-size: 44px; font-family: "Trebuchet MS", Arial, sans-serif; font-weight: 900; }
+.progress-banner-score small { font-size: 14px; }
+.site-footer { background: var(--white); border-top: 1px solid var(--border); }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 27px 0; color: #70817c; font-size: 10px; }
+.footer-inner strong { color: var(--primary); }
+
+/* 8. Adaptarea la telefon și tabletă */
+@media (max-width: 970px) {
+  .header-inner { flex-wrap: wrap; padding-top: 16px; padding-bottom: 12px; gap: 12px; }
+  .main-nav { order: 3; width: 100%; justify-content: center; gap: 25px; }
+  .main-nav a { padding: 12px 0 11px; }
+  .hero { grid-template-columns: 1fr 1fr; gap: 26px; }
+  .floating-label { font-size: 9px; }
+  .hero-visual { padding-inline: 7px; }
+}
+@media (max-width: 700px) {
+  .container { width: min(100% - 32px, 540px); }
+  .brand { font-size: 22px; }
+  .brand-icon { width: 38px; height: 38px; }
+  .score-pill { padding: 8px 11px; }
+  .main-nav { gap: 15px; justify-content: space-between; overflow-x: auto; }
+  .main-nav a { font-size: 11px; white-space: nowrap; }
+  .hero { grid-template-columns: 1fr; gap: 32px; padding: 44px 0 70px; }
+  h1 { font-size: clamp(39px, 10vw, 55px); letter-spacing: -1.7px; }
+  .hero-description { font-size: 13px; }
+  .hero-highlights { gap: 12px; }
+  .hero-visual { width: 100%; padding: 18px 26px; }
+  .quest-card { width: min(370px, 100%); }
+  .floating-label-top { right: 0; top: 40px; }
+  .floating-label-bottom { left: 0; bottom: 48px; }
+  .how-section { padding: 57px 0; }
+  .steps-grid, .activities-grid { grid-template-columns: 1fr; }
+  .step { padding: 20px; }
+  .activities-section { padding-top: 55px; padding-bottom: 44px; }
+  .activity-card { min-height: 0; }
+  .activity-card p { min-height: 0; }
+  .progress-banner { padding: 25px; flex-wrap: wrap; }
+  .progress-banner-symbol { width: 55px; height: 55px; font-size: 29px; }
+  .progress-banner h2 { font-size: 22px; }
+  .progress-banner-score { margin-left: 0; font-size: 36px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .button, .main-nav a { transition: none; }
+}
+
+
+/* 9. FIȘA 4 — Quizul interactiv JavaScript */
+.quiz-panel {
+  margin-bottom: 28px;
+  padding: clamp(22px, 4vw, 36px);
+  border-radius: 22px;
+  background: #fff;
+  border: 2px solid #dcebe5;
+  box-shadow: 0 12px 35px rgba(18, 92, 78, .07);
+  scroll-margin-top: 22px;
+}
+.quiz-topline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.quiz-label { font-size: 11px; font-weight: 800; color: var(--primary); letter-spacing: .65px; }
+.quiz-count { border-radius: 20px; padding: 5px 11px; font-size: 11px; font-weight: 800; color: #855a12; background: #fff3d8; }
+.quiz-panel h3 { color: var(--primary-dark); font-size: clamp(25px, 3vw, 32px); margin: 0 0 8px; }
+.quiz-intro { color: var(--muted); font-size: 13px; margin: 0 0 25px; }
+.quiz-question { margin: 0 0 18px; font-family: "Trebuchet MS", Arial, sans-serif; font-weight: 800; font-size: clamp(19px, 2vw, 23px); }
+.quiz-answers { display: grid; gap: 11px; }
+.quiz-answers button {
+  padding: 14px 18px;
+  border: 2px solid #d5e4df;
+  border-radius: 12px;
+  background: #fafdfe;
+  text-align: left;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  transition: border-color .15s, background .15s;
+}
+.quiz-answers button:hover:not(:disabled) { background: #eaf6f0; border-color: var(--primary); }
+.quiz-answers button:disabled { cursor: default; opacity: 1; }
+.quiz-answers button.correct { background: #e1f5e9; border-color: #1b8757; color: #0d5e3b; }
+.quiz-answers button.incorrect { background: #fff0ef; border-color: #ca493f; color: #93312b; }
+.quiz-feedback { min-height: 27px; margin: 18px 0 8px; font-size: 13px; font-weight: 800; color: var(--primary); }
+.quiz-feedback.error { color: #a43d33; }
+.quiz-next { margin-top: 9px; }
+.quiz-result { margin-top: 24px; padding: 24px; background: #e8f5ec; border: 1px solid #b6d9c6; border-radius: 15px; }
+.quiz-result h4 { font-size: 21px; color: var(--primary); margin: 0 0 9px; }
+.quiz-result p { margin: 0 0 20px; }
+
+@media (max-width: 700px) {
+  .quiz-panel { padding: 20px 17px; }
+  .quiz-answers button { padding: 13px; }
+  .quiz-next, #restart { width: 100%; }
+}
